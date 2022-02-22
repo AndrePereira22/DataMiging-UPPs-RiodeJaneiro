@@ -1,0 +1,41 @@
+CREATE TABLE public.upp (
+id serial NOT NULL ,
+zona character varying(10),
+upp character varying(40) ,
+CONSTRAINT pk_upp PRIMARY KEY (id) ) WITH ( OIDS = FALSE)
+TABLESPACE pg_default;
+ALTER TABLE public.upp OWNER to postgres;
+
+
+CREATE TABLE public.tempo (
+id serial NOT NULL ,
+ano integer,
+semestre character varying(10) ,
+trimestre character varying(10) ,
+mes character varying(10) ,
+CONSTRAINT pk_tempo PRIMARY KEY (id) ) WITH ( OIDS = FALSE)
+TABLESPACE pg_default;
+ALTER TABLE public.tempo OWNER to postgres;
+
+
+
+CREATE TABLE public.ocorrencia (
+id serial NOT NULL ,
+categoria character varying(50) ,
+sub_categoria character varying(30) ,
+descricao character varying(100) ,
+contagem character varying(10) ,	
+CONSTRAINT pk_ocorrencia PRIMARY KEY (id)) WITH (OIDS = FALSE)
+TABLESPACE pg_default;
+ALTER TABLE public.ocorrencia OWNER to postgres;
+
+
+
+CREATE TABLE public.fato (
+id_tempo integer NOT NULL,
+id_ocorrencia integer NOT NULL,
+id_upp integer NOT NULL,
+quantidade integer,
+CONSTRAINT pk_fato PRIMARY KEY (id_tempo, id_ocorrencia, id_upp) ) WITH ( OIDS = FALSE
+)
+TABLESPACE pg_default;
